@@ -1,10 +1,10 @@
 <style type="text/css">
-/* ===== Font: Cabin -> Montserrat (all pages) ===== */
+/* ===== Font: Montserrat (all pages) ===== */
 *:not(.fa) {
   font-family: "Montserrat", "Quicksand", sans-serif !important;
 }
 
-/* ===== HOME PAGE ONLY: Cream/yellow header ===== */
+/* ===== HOME PAGE: Cream header ===== */
 body.page-home header.global-header,
 body.page-home header.global-header.slim {
   background: #fff9ef !important;
@@ -14,8 +14,6 @@ body.page-home header.global-header.slim {
   position: relative !important;
   z-index: 1000 !important;
 }
-
-/* ===== HOME PAGE ONLY: Teal pill buttons ===== */
 body.page-home header.global-header .sign-in-btn,
 body.page-home header.global-header a.sign-in-btn.btn {
   background-color: #94bab7 !important;
@@ -25,7 +23,6 @@ body.page-home header.global-header a.sign-in-btn.btn {
   padding: 8px 20px !important;
   text-decoration: none !important;
 }
-
 body.page-home header.global-header .register-btn,
 body.page-home header.global-header a.register-btn.btn {
   background-color: #94bab7 !important;
@@ -35,7 +32,6 @@ body.page-home header.global-header a.register-btn.btn {
   padding: 8px 20px !important;
   text-decoration: none !important;
 }
-
 body.page-home header.global-header .header-courses-button,
 body.page-home header.global-header a.header-courses-button {
   background-color: #94bab7 !important;
@@ -46,24 +42,20 @@ body.page-home header.global-header a.header-courses-button {
   text-decoration: none !important;
   text-shadow: none !important;
 }
-
 body.page-home header.global-header a.header-courses-button:hover,
-body.page-home header.global-header a.header-courses-button:focus,
 body.page-home header.global-header a.sign-in-btn:hover,
 body.page-home header.global-header a.register-btn:hover {
   text-decoration: none !important;
   color: #ffffff !important;
   opacity: 0.9;
 }
-
 body.page-home header.global-header .header-courses-button.omni-link-hover {
   color: #ffffff !important;
   text-decoration: none !important;
   border-bottom: none !important;
-  text-underline-offset: unset !important;
 }
 
-/* ===== HOME PAGE ONLY: Cream/yellow footer ===== */
+/* ===== HOME PAGE: Cream footer ===== */
 body.page-home .wrapper-footer.nielit-footer {
   background: #fff9ef !important;
 }
@@ -82,13 +74,13 @@ body.page-home .nielit-social a i {
   color: #333 !important;
 }
 
-/* ===== FIX: Buttons visible on desktop only ===== */
+/* ===== Desktop buttons ===== */
 @media (min-width: 768px) {
-  body.page-home header.global-header .secondary-box .mobile-nav-item.hidden-mobile {
+  header.global-header .secondary-box .mobile-nav-item.hidden-mobile {
     display: inline-block !important;
     visibility: visible !important;
   }
-  body.page-home header.global-header .nav-links .secondary .secondary-box {
+  header.global-header .nav-links .secondary .secondary-box {
     display: flex !important;
     gap: 8px !important;
     align-items: center !important;
@@ -96,22 +88,94 @@ body.page-home .nielit-social a i {
   }
 }
 
-/* ===== MOBILE: Hide nav bar, show hamburger ===== */
+/* ===== Mobile hamburger ===== */
 @media (max-width: 767px) {
-  body.page-home header.global-header .omni-navigation-bar {
+  header.global-header .omni-navigation-bar {
     display: none !important;
   }
-  body.page-home header.global-header .hamburger-menu {
+  header.global-header .hamburger-menu {
     display: block !important;
   }
 }
 
-/* ===== NON-HOME: Keep teal header, ensure text visible ===== */
-body:not(.page-home) header.global-header .course-header .course-name,
+/* ===== NON-HOME: Teal header ===== */
+body:not(.page-home) header.global-header {
+  background: #1a5c5a !important;
+  border-bottom: none !important;
+}
+body:not(.page-home) header.global-header .nav-links .secondary a,
+body:not(.page-home) header.global-header .nav-links .main .nav-tab a {
+  color: #fff !important;
+}
+body:not(.page-home) header.global-header .sign-in-btn,
+body:not(.page-home) header.global-header a.sign-in-btn {
+  background-color: #94bab7 !important;
+  border-color: #94bab7 !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  padding: 8px 20px !important;
+}
+body:not(.page-home) header.global-header .register-btn,
+body:not(.page-home) header.global-header a.register-btn {
+  background-color: #94bab7 !important;
+  border-color: #94bab7 !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  padding: 8px 20px !important;
+}
+body:not(.page-home) header.global-header .header-courses-button,
+body:not(.page-home) header.global-header a.header-courses-button {
+  background-color: #94bab7 !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  padding: 8px 20px !important;
+  border: 2px solid #94bab7 !important;
+}
+body:not(.page-home) header.global-header .hamburger-menu .line {
+  background: #fff !important;
+}
+body:not(.page-home) header.global-header .header-logo .course-header,
+body:not(.page-home) header.global-header .header-logo .course-header .course-name,
 body:not(.page-home) header.global-header .course-header .course-name span,
 body:not(.page-home) header.global-header .course-header .provider,
 body:not(.page-home) header.global-header .course-header .course-number span {
   color: #ffffff !important;
   text-shadow: 0 1px 2px rgba(0,0,0,0.15) !important;
+}
+
+/* ===== NON-HOME: Teal footer ===== */
+body:not(.page-home) .wrapper-footer.nielit-footer {
+  background: #1a5c5a !important;
+  color: #fff !important;
+}
+body:not(.page-home) .nielit-footer-main h3,
+body:not(.page-home) .nielit-footer-links a,
+body:not(.page-home) .nielit-footer-address p,
+body:not(.page-home) .nielit-footer-brand .nielit-desc,
+body:not(.page-home) .nielit-footer-bottom p {
+  color: #fff !important;
+}
+body:not(.page-home) .nielit-social a i {
+  color: #fff !important;
+}
+
+/* ===== FOOTER LAYOUT (all pages) ===== */
+.wrapper-footer.nielit-footer { width: 100%%; margin-top: 40px; }
+.nielit-footer-main { display: flex; flex-wrap: wrap; justify-content: space-between; padding: 40px 5%% 20px; gap: 30px; }
+.nielit-footer-brand { flex: 1 1 250px; max-width: 350px; }
+.nielit-footer-brand .nielit-logo { max-width: 200px; height: auto; margin-bottom: 10px; }
+.nielit-footer-brand .nielit-desc { font-size: 14px; line-height: 1.5; margin-top: 10px; }
+.nielit-footer-links { flex: 0 1 200px; }
+.nielit-footer-links h3, .nielit-footer-address h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+.nielit-footer-links ul { list-style: none; padding: 0; margin: 0; }
+.nielit-footer-links ul li { margin-bottom: 8px; }
+.nielit-footer-links ul li a { text-decoration: none; font-size: 14px; }
+.nielit-footer-address { flex: 1 1 250px; max-width: 350px; }
+.nielit-footer-address p { font-size: 14px; line-height: 1.6; }
+.nielit-social { margin-top: 12px; }
+.nielit-social a { display: inline-block; margin-right: 12px; font-size: 18px; text-decoration: none; }
+.nielit-footer-bottom { text-align: center; padding: 15px 5%%; border-top: 1px solid rgba(255,255,255,0.2); font-size: 13px; }
+@media (max-width: 767px) {
+  .nielit-footer-main { flex-direction: column; align-items: flex-start; }
 }
 </style>

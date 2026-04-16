@@ -1,0 +1,123 @@
+<!doctype html><html lang="en-us"><head><title>Gradebook |</title><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="" type="image/x-icon"/><script defer="defer" src="/gradebook/runtime.41253f5c122b7e483e46.js"></script><script defer="defer" src="/gradebook/644.e4a45ae0ecfd6711c40b.js"></script><script defer="defer" src="/gradebook/app.5ff089de17cc8af9369a.js"></script><link href="/gradebook/app.5ff089de17cc8af9369a.css" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><style>
+/* ===== MFE RESPONSIVE HEADER ===== */
+@media (max-width: 767px) {
+  header.learning-header .container-xl {
+    flex-wrap: wrap !important;
+    padding: 8px 10px !important;
+    gap: 4px !important;
+  }
+  header.learning-header .logo {
+    order: 1 !important;
+    flex-shrink: 0 !important;
+  }
+  header.learning-header .logo img {
+    max-height: 36px !important;
+    width: auto !important;
+  }
+  header.learning-header .pgn__dropdown {
+    order: 0 !important;
+  }
+  header.learning-header .course-title-lockup {
+    order: 10 !important;
+    flex-basis: 100% !important;
+    margin-top: 4px !important;
+    padding-top: 4px !important;
+    border-top: 1px solid rgba(255,255,255,0.15) !important;
+  }
+  header.learning-header .course-title-lockup .title {
+    font-size: 13px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 280px !important;
+    display: block !important;
+  }
+  header.learning-header .course-title-lockup .org {
+    font-size: 11px !important;
+  }
+  header.learning-header .nav-course {
+    display: none !important;
+  }
+
+  header.learning-header .theme-toggle-button {
+    display: none !important;
+  }
+  header.learning-header .echi-learning-help-link {
+    display: none !important;
+  }
+  header.learning-header .course-title-lockup .course-info-header {
+    max-width: calc(100vw - 40px) !important;
+    overflow: hidden !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  header.learning-header .course-title-lockup .title {
+    font-size: 14px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 280px !important;
+  }
+  header.learning-header .course-title-lockup .org {
+    font-size: 12px !important;
+  }
+  header.learning-header .theme-toggle-button {
+    display: none !important;
+  }
+  header.learning-header .echi-learning-help-link {
+    font-size: 13px !important;
+  }
+}
+/* ===== END MFE RESPONSIVE ===== */
+</style></head><body><div id="root"></div><script type="text/javascript">var PARAGON_THEME = { "paragon": { "version": "22.17.0", "themeUrls": { "core": {}, "variants": {} } }, "brand": { "version": "1.2.3", "themeUrls": { "core": {}, "variants": {} } } };</script><script>
+(function(){
+  function injectLinks(menu) {
+    if (menu.querySelector('.injected-link')) return;
+    var seen = {};
+    var links = document.querySelectorAll('.echi-learning-help-link');
+    links.forEach(function(link) {
+      var text = link.textContent.trim();
+      if (seen[text]) return;
+      seen[text] = true;
+      var item = document.createElement('a');
+      item.href = link.href;
+      item.target = link.target || '_self';
+      item.rel = link.rel || '';
+      item.textContent = text + ' \u00BB';
+      item.className = 'dropdown-item injected-link';
+      item.style.cssText = 'display:block;padding:8px 24px;color:#212529;text-decoration:none;font-size:14px;';
+      menu.appendChild(item);
+    });
+    var navLinks = document.querySelectorAll('.nav-course a');
+    navLinks.forEach(function(link) {
+      var text = link.textContent.trim();
+      if (seen[text] || menu.querySelector('a[href="'+link.href+'"]')) return;
+      seen[text] = true;
+      var item = document.createElement('a');
+      item.href = link.href;
+      item.textContent = text + ' \u00BB';
+      item.className = 'dropdown-item injected-link';
+      item.style.cssText = 'display:block;padding:8px 24px;color:#212529;text-decoration:none;font-size:14px;';
+      menu.appendChild(item);
+    });
+  }
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(m) {
+      m.addedNodes.forEach(function(node) {
+        if (node.nodeType === 1) {
+          var menu = node.classList && node.classList.contains('dropdown-menu') ? node : node.querySelector && node.querySelector('.dropdown-menu.show');
+          if (menu) injectLinks(menu);
+        }
+      });
+    });
+  });
+  observer.observe(document.body, {childList: true, subtree: true});
+  document.addEventListener('click', function() {
+    setTimeout(function() {
+      var menu = document.querySelector('.dropdown-menu.show');
+      if (menu) injectLinks(menu);
+    }, 100);
+  });
+})();
+</script></body></html>

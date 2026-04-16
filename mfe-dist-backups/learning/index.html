@@ -1,0 +1,1005 @@
+<!doctype html><html lang="en-us"><head><title>Course |</title><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="" type="image/x-icon"/><script defer="defer" src="/learning/runtime.0a80f65a102f06d0c609.js"></script><script defer="defer" src="/learning/777.f78d1db2930d3486d799.js"></script><script defer="defer" src="/learning/app.71fa9c9166dd4f8af98e.js"></script><link href="/learning/app.71fa9c9166dd4f8af98e.css" rel="stylesheet"><style>.instructor-info-action,[class*="staff-debug"],button[data-testid*="staff"],[data-testid="staff-debug-info-button"]{display:none!important}.unit{padding:0!important;overflow:hidden!important}.unit>.d-flex:first-child{padding:20px 20px 0 20px!important}.unit>.pgn__stateful-btn{padding-left:20px!important;margin-bottom:8px!important}.unit-iframe-wrapper{width:100%!important;margin:0!important;padding:0!important}.unit-iframe-wrapper iframe{display:block!important;width:100%!important}.unit-navigation{padding:16px 20px!important;gap:12px!important;border-top:1px solid #e2e5ea!important;margin-top:0!important}</style><link rel="stylesheet" href="/learning/helpdesk-learning.css?v=20260410-2"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><style>
+/* ===== MFE RESPONSIVE HEADER ===== */
+@media (max-width: 767px) {
+  header.learning-header .container-xl {
+    flex-wrap: wrap !important;
+    padding: 8px 10px !important;
+    gap: 4px !important;
+  }
+  header.learning-header .logo {
+    order: 1 !important;
+    flex-shrink: 0 !important;
+  }
+  header.learning-header .logo img {
+    max-height: 36px !important;
+    width: auto !important;
+  }
+  header.learning-header .pgn__dropdown {
+    order: 0 !important;
+  }
+  header.learning-header .course-title-lockup {
+    order: 10 !important;
+    flex-basis: 100% !important;
+    margin-top: 4px !important;
+    padding-top: 4px !important;
+    border-top: 1px solid rgba(255,255,255,0.15) !important;
+  }
+  header.learning-header .course-title-lockup .title {
+    font-size: 13px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 280px !important;
+    display: block !important;
+  }
+  header.learning-header .course-title-lockup .org {
+    font-size: 11px !important;
+  }
+  header.learning-header .nav-course {
+    display: none !important;
+  }
+
+  header.learning-header .theme-toggle-button {
+    display: none !important;
+  }
+  header.learning-header .echi-learning-help-link {
+    display: none !important;
+  }
+  header.learning-header .course-title-lockup .course-info-header {
+    max-width: calc(100vw - 40px) !important;
+    overflow: hidden !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  header.learning-header .course-title-lockup .title {
+    font-size: 14px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 280px !important;
+  }
+  header.learning-header .course-title-lockup .org {
+    font-size: 12px !important;
+  }
+  header.learning-header .theme-toggle-button {
+    display: none !important;
+  }
+  header.learning-header .echi-learning-help-link {
+    font-size: 13px !important;
+  }
+}
+/* ===== END MFE RESPONSIVE ===== */
+</style></head><body><div id="root"></div><script type="text/javascript">var PARAGON_THEME = { "paragon": { "version": "22.17.0", "themeUrls": { "core": {}, "variants": {} } }, "brand": { "version": "2.4.2", "themeUrls": { "core": {}, "variants": {} } } };</script><script src="/learning/antiseek.js?v=20260410-3"></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+  // Track completion per unit URL
+  var completedUnits = JSON.parse(localStorage.getItem('edx_completed_units') || '{}');
+  var currentUnitCompleted = false;
+
+  function getCurrentUnitKey() {
+    return window.location.pathname;
+  }
+
+  function saveCompleted(key) {
+    completedUnits[key] = true;
+    try { localStorage.setItem('edx_completed_units', JSON.stringify(completedUnits)); } catch(e) {}
+  }
+
+  function isCurrentCompleted() {
+    // Check localStorage
+    if (completedUnits[getCurrentUnitKey()]) return true;
+    // Check sidebar check-circle on active item
+    var active = document.querySelector(".bg-info-100");
+    if (active) {
+      var li = active.closest("li") || active.parentElement;
+      if (li && li.querySelector('[data-testid="check-circle-icon"]')) {
+        saveCompleted(getCurrentUnitKey());
+        return true;
+      }
+    }
+    return currentUnitCompleted;
+  }
+
+  function showToast(msg) {
+    var d = document.getElementById("gate-toast");
+    if (!d) {
+      d = document.createElement("div");
+      d.id = "gate-toast";
+      d.style.cssText = "position:fixed;top:90px;left:50%;transform:translateX(-50%);background:#cc0000;color:#fff;padding:14px 32px;border-radius:10px;font-size:15px;font-weight:600;z-index:999999;font-family:sans-serif;box-shadow:0 4px 20px rgba(0,0,0,0.5);text-align:center;pointer-events:none;max-width:500px;line-height:1.5;";
+      document.body.appendChild(d);
+    }
+    d.textContent = msg;
+    d.style.opacity = "1";
+    d.style.display = "block";
+    clearTimeout(d._t);
+    d._t = setTimeout(function(){ d.style.opacity="0"; }, 4000);
+  }
+
+  function hasVideoIframe() {
+    return !!document.querySelector("iframe[title='Unit']");
+  }
+
+  function getNextUnitUrl() {
+    var btn = document.querySelector("a.next-button");
+    return btn ? btn.href : null;
+  }
+
+  function blockElement(el) {
+    if (el.dataset.gb === "3") return;
+    el.dataset.gb = "3";
+    el.addEventListener("click", function(e) {
+      if (!hasVideoIframe()) return;
+      if (isCurrentCompleted()) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      showToast("Please complete the current video before accessing the next unit.");
+      return false;
+    }, true);
+  }
+
+  // Also intercept History API (React router navigation)
+  var origPushState = history.pushState.bind(history);
+  var origReplaceState = history.replaceState.bind(history);
+  var currentPath = location.pathname;
+
+  history.pushState = function(state, title, url) {
+    if (url && url !== currentPath) {
+      // Allow going backwards always
+      // Block going to next unit if not completed
+      if (hasVideoIframe() && !isCurrentCompleted()) {
+        var nextUrl = getNextUnitUrl();
+        if (nextUrl && url && nextUrl.includes(url.split('/').pop())) {
+          showToast("Please complete the current video before accessing the next unit.");
+          return;
+        }
+      }
+    }
+    return origPushState(state, title, url);
+  };
+
+  function attachBlocks() {
+    // Next buttons
+    document.querySelectorAll("a.next-button, button.next-button, [aria-label='Next']").forEach(blockElement);
+    // Sidebar next unit links - only block FORWARD navigation
+    var activeFound = false;
+    document.querySelectorAll(".outline-sidebar li").forEach(function(li) {
+      if (li.querySelector(".bg-info-100")) {
+        activeFound = true;
+        return;
+      }
+      if (activeFound) {
+        // This is a unit AFTER current - block it
+        li.querySelectorAll("a").forEach(function(a) {
+          if (a.dataset.gb === "3") return;
+          a.dataset.gb = "3";
+          a.addEventListener("click", function(e) {
+            if (!hasVideoIframe()) return;
+            if (isCurrentCompleted()) return;
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            showToast("Please complete the current video before accessing the next unit.");
+          }, true);
+        });
+      }
+    });
+
+    // Check completion status periodically
+    var active = document.querySelector(".bg-info-100");
+    if (active) {
+      var li = active.closest("li") || active.parentElement;
+      if (li && li.querySelector('[data-testid="check-circle-icon"]')) {
+        currentUnitCompleted = true;
+        saveCompleted(getCurrentUnitKey());
+      }
+    }
+  }
+
+  var lastUrl = location.href;
+  setInterval(function() {
+    attachBlocks();
+    if (location.href !== lastUrl) {
+      lastUrl = location.href;
+      currentUnitCompleted = false;
+      document.querySelectorAll("[data-gb]").forEach(function(el){ delete el.dataset.gb; });
+    }
+  }, 600);
+
+  new MutationObserver(attachBlocks).observe(
+    document.documentElement, {childList:true, subtree:true}
+  );
+})();
+</script>
+<script>
+(function(){
+  function injectLinks(menu) {
+    if (menu.querySelector('.injected-link')) return;
+    var seen = {};
+    var links = document.querySelectorAll('.echi-learning-help-link');
+    links.forEach(function(link) {
+      var text = link.textContent.trim();
+      if (seen[text]) return;
+      seen[text] = true;
+      var item = document.createElement('a');
+      item.href = link.href;
+      item.target = link.target || '_self';
+      item.rel = link.rel || '';
+      item.textContent = text + ' \u00BB';
+      item.className = 'dropdown-item injected-link';
+      item.style.cssText = 'display:block;padding:8px 24px;color:#212529;text-decoration:none;font-size:14px;';
+      menu.appendChild(item);
+    });
+    var navLinks = document.querySelectorAll('.nav-course a');
+    navLinks.forEach(function(link) {
+      var text = link.textContent.trim();
+      if (seen[text] || menu.querySelector('a[href="'+link.href+'"]')) return;
+      seen[text] = true;
+      var item = document.createElement('a');
+      item.href = link.href;
+      item.textContent = text + ' \u00BB';
+      item.className = 'dropdown-item injected-link';
+      item.style.cssText = 'display:block;padding:8px 24px;color:#212529;text-decoration:none;font-size:14px;';
+      menu.appendChild(item);
+    });
+  }
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(m) {
+      m.addedNodes.forEach(function(node) {
+        if (node.nodeType === 1) {
+          var menu = node.classList && node.classList.contains('dropdown-menu') ? node : node.querySelector && node.querySelector('.dropdown-menu.show');
+          if (menu) injectLinks(menu);
+        }
+      });
+    });
+  });
+  observer.observe(document.body, {childList: true, subtree: true});
+  document.addEventListener('click', function() {
+    setTimeout(function() {
+      var menu = document.querySelector('.dropdown-menu.show');
+      if (menu) injectLinks(menu);
+    }, 100);
+  });
+})();
+</script></body></html><style>
+body,#root,.pgn__container{background-color:#fdf8f0!important}
+.learning-header{background:#fff!important;border-bottom:1px solid #e2e5ea!important;box-shadow:0 2px 8px rgba(0,0,0,.07)!important}
+.course-tabs-navigation button{color:#6b7280!important;font-weight:500!important}
+.course-tabs-navigation button.active,.course-tabs-navigation button[aria-selected=true]{color:#0a7c6e!important;border-bottom:2px solid #0a7c6e!important}
+.btn-primary,.pgn__btn-primary{background-color:#0a7c6e!important;border-color:#0a7c6e!important;border-radius:8px!important}
+.btn-primary:hover,.pgn__btn-primary:hover{background-color:#065c52!important;border-color:#065c52!important}
+.sequence-navigation button.active{background:rgba(10,124,110,.12)!important;border-left:3px solid #0a7c6e!important}
+.sequence-navigation-tabs-item--active{border-bottom:2px solid #0a7c6e!important}
+a{color:#0a7c6e!important}
+.pgn__tab-nav button.active,.pgn__tab-nav [aria-selected=true]{color:#0a7c6e!important;border-bottom-color:#0a7c6e!important}
+nav[aria-label] a{color:#0a7c6e!important}
+.course-sidebar{background:#fff!important;border-right:1px solid #e2e5ea!important}
+[class*="UnitButton"][class*="active"],[class*="unit-button"][class*="active"]{background:rgba(10,124,110,.1)!important;color:#0a7c6e!important}
+.btn-outline-primary{border-color:#0a7c6e!important;color:#0a7c6e!important}
+.btn-outline-primary:hover{background:#0a7c6e!important;color:#fff!important}
+.pgn__icon{color:#0a7c6e!important}
+[class*="complete"] svg,[class*="Complete"] svg{color:#22c55e!important;fill:#22c55e!important}
+/* NDU Learning Page - Precise overrides based on actual HTML */
+
+/* Page background - cream */
+body,#root,.app-container{background-color:#fdf8f0!important}
+
+/* Header - white */
+.learning-header{background:#ffffff!important;border-bottom:1px solid #e2e5ea!important;box-shadow:0 2px 4px rgba(0,0,0,.06)!important}
+.learning-header .course-title{color:#1a1a2e!important;font-weight:600!important}
+
+/* Staff toolbar - teal instead of dark blue */
+[data-testid="instructor-toolbar"] .bg-primary{background-color:#0a7c6e!important}
+
+/* Course tabs (Course, Progress, Dates, Instructor) */
+.course-tabs-navigation .nav-underline-tabs .nav-link{color:#6b7280!important;font-weight:500!important;border-bottom:2px solid transparent!important}
+.course-tabs-navigation .nav-underline-tabs .nav-link.active{color:#0a7c6e!important;border-bottom:2px solid #0a7c6e!important;font-weight:600!important}
+.course-tabs-navigation .nav-underline-tabs .nav-link:hover{color:#0a7c6e!important}
+
+/* Sidebar */
+.outline-sidebar-wrapper{background:#ffffff!important;border-right:1px solid #e2e5ea!important;border-radius:12px!important}
+.outline-sidebar-heading-wrapper{background:#f0faf8!important;border-radius:12px 12px 0 0!important}
+.outline-sidebar-heading{color:#0a7c6e!important;font-weight:700!important}
+
+/* Active unit in sidebar */
+.bg-info-100{background-color:rgba(10,124,110,.1)!important;border-left:3px solid #0a7c6e!important}
+.bg-info-100 a{color:#0a7c6e!important;font-weight:500!important}
+
+/* Collapsible sections */
+.collapsible-card-lg .collapsible-trigger{border-radius:8px!important;padding:8px 12px!important}
+.collapsible-card-lg.active-section .collapsible-trigger{background:rgba(10,124,110,.06)!important}
+.text-dark-500{color:#1a1a2e!important}
+
+/* Icons in sidebar */
+.text-gray-300{color:#0a7c6e!important}
+.pgn__icon svg path{fill:currentColor}
+
+/* Previous/Next buttons */
+.previous-button.btn-outline-secondary{border-color:#e2e5ea!important;color:#6b7280!important;border-radius:8px!important}
+.next-button.btn-outline-primary{background:#0a7c6e!important;border-color:#0a7c6e!important;color:#ffffff!important;border-radius:8px!important}
+.next-button.btn-outline-primary:hover{background:#065c52!important;border-color:#065c52!important}
+
+/* Top icon buttons (prev/next arrows) */
+.btn-icon-primary{color:#0a7c6e!important}
+.btn-icon-primary:hover{background:rgba(10,124,110,.1)!important}
+
+/* Bookmark button */
+.text-primary-500,.text-primary{color:#0a7c6e!important}
+.pgn__stateful-btn .pgn__icon.text-primary svg path{fill:#0a7c6e!important}
+
+/* Unit content area */
+.unit{background:#ffffff!important;border-radius:12px!important;padding:16px!important;box-shadow:0 2px 8px rgba(0,0,0,.06)!important}
+
+/* Section tabs below video (Summary, Virtual Lab, etc) */
+.nav-tabs .nav-link{color:#6b7280!important;border-bottom:2px solid transparent!important;font-weight:500!important}
+.nav-tabs .nav-link.active{color:#0a7c6e!important;border-bottom:2px solid #0a7c6e!important;font-weight:600!important}
+.nav-tabs .nav-link:hover{color:#0a7c6e!important}
+
+/* Submit buttons */
+.btn-primary{background:#0a7c6e!important;border-color:#0a7c6e!important;border-radius:8px!important;color:#fff!important}
+.btn-primary:hover{background:#065c52!important;border-color:#065c52!important}
+.btn-outline-primary{border-color:#0a7c6e!important;color:#0a7c6e!important;border-radius:8px!important}
+.btn-outline-primary:hover{background:#0a7c6e!important;color:#fff!important}
+
+/* Links */
+a:not(.btn):not(.nav-link):not(.logo){color:#0a7c6e!important}
+
+/* Footer */
+.wrapper-footer,.wrapper.wrapper-footer{background:linear-gradient(135deg,#065c52 0%,#0a7c6e 100%)!important}
+.wrapper-footer footer,.wrapper-footer .tutor-container{color:rgba(255,255,255,.85)!important}
+.wrapper-footer a{color:rgba(255,255,255,.75)!important}
+.wrapper-footer .logo-list li{color:rgba(255,255,255,.7)!important}
+/* Fix header - white bg */
+.learning-header{background:#ffffff!important;border-bottom:1px solid #e2e5ea!important}
+.learning-header *{color:#1a1a2e!important}
+.learning-header .course-title{color:#1a1a2e!important}
+
+/* Staff toolbar - lighter teal */
+[data-testid="instructor-toolbar"]{background:linear-gradient(135deg,#065c52,#0a7c6e)!important}
+
+/* Sidebar unit icons - green play button */
+.outline-sidebar .collapsible-body a svg{color:#22c55e!important}
+.outline-sidebar .collapsible-body a svg path{fill:#22c55e!important}
+
+/* Active sidebar item stronger */
+.bg-info-100{background:rgba(10,124,110,.12)!important;border-left:3px solid #0a7c6e!important;border-radius:0 8px 8px 0!important}
+
+/* Unit icon in sidebar (video icon) */
+.collapsible-body a .col-auto svg{color:#22c55e!important}
+.collapsible-body a .col-auto svg path{fill:#22c55e!important}
+
+/* Sidebar chapter header */
+.outline-sidebar-heading-wrapper{background:#f0faf8!important}
+.outline-sidebar-heading span{color:#0a7c6e!important}
+
+/* Course tabs underline */
+#courseTabsNavigation{background:#ffffff!important;box-shadow:0 1px 4px rgba(0,0,0,.08)!important}
+#courseTabsNavigation .nav-link{padding-bottom:12px!important}
+#courseTabsNavigation .nav-link.active{color:#0a7c6e!important;border-bottom:3px solid #0a7c6e!important;font-weight:600!important}
+
+/* Unit area white card */
+.unit-container{background:#fdf8f0!important}
+.unit{background:#ffffff!important;border-radius:12px!important;box-shadow:0 2px 8px rgba(0,0,0,.06)!important;padding:20px!important}
+
+/* Next button solid teal */
+a.next-button.btn-outline-primary{background:#0a7c6e!important;color:#fff!important;border-radius:8px!important;font-weight:600!important}
+
+/* Previous button outlined */
+button.previous-button{border-color:#e2e5ea!important;color:#6b7280!important;border-radius:8px!important}
+
+/* Footer teal gradient */
+.wrapper-footer,.wrapper.wrapper-footer{background:linear-gradient(135deg,#065c52 0%,#0a7c6e 100%)!important;color:#fff!important}
+.wrapper-footer *{color:rgba(255,255,255,.85)!important}
+.wrapper-footer img{filter:brightness(0) invert(1) opacity(.8)!important}
+/* Sidebar circle icons - teal */
+.collapsible-trigger .text-gray-300{color:#0a7c6e!important}
+.collapsible-trigger .text-gray-300 path{fill:#0a7c6e!important}
+
+/* Sidebar unit video icon - green */
+.collapsible-body a .col-auto svg{color:#22c55e!important}
+.collapsible-body a .col-auto svg path{fill:#22c55e!important}
+
+/* Collapsible arrow icon */
+.collapsible-trigger .collapsible-icon .pgn__icon{color:#6b7280!important}
+
+/* Active section trigger */
+.active-section .collapsible-trigger{background:rgba(10,124,110,.06)!important;border-radius:8px!important}
+.active-section .collapsible-trigger .text-gray-300{color:#0a7c6e!important}
+
+/* Outline sidebar heading back arrow */
+.outline-sidebar-heading .pgn__icon{color:#0a7c6e!important}
+.outline-sidebar-heading .pgn__icon path{fill:#0a7c6e!important}
+
+/* Toggle sidebar button */
+.outline-sidebar-toggle-btn{color:#0a7c6e!important}
+.outline-sidebar-toggle-btn svg path{fill:#0a7c6e!important}
+
+/* Top unit navigation arrows */
+.previous-button.btn-icon-primary,.next-button.btn-icon-primary{color:#0a7c6e!important}
+.previous-button.btn-icon-primary svg path,.next-button.btn-icon-primary svg path{fill:#0a7c6e!important}
+
+/* Bottom Previous/Next buttons */
+button.previous-button.btn-outline-secondary{
+  border:1.5px solid #e2e5ea!important;
+  color:#6b7280!important;
+  border-radius:8px!important;
+  background:#ffffff!important;
+  font-weight:500!important;
+  padding:8px 24px!important;
+}
+a.next-button.btn-outline-primary{
+  background:#0a7c6e!important;
+  border-color:#0a7c6e!important;
+  color:#ffffff!important;
+  border-radius:8px!important;
+  font-weight:600!important;
+  padding:8px 24px!important;
+}
+a.next-button.btn-outline-primary:hover{
+  background:#065c52!important;
+  border-color:#065c52!important;
+}
+a.next-button.btn-outline-primary svg path{fill:#ffffff!important}
+/* Sidebar circle icons - teal */
+.collapsible-trigger .text-gray-300{color:#0a7c6e!important}
+.collapsible-trigger .text-gray-300 path{fill:#0a7c6e!important}
+
+/* Sidebar unit video icon - green */
+.collapsible-body a .col-auto svg{color:#22c55e!important}
+.collapsible-body a .col-auto svg path{fill:#22c55e!important}
+
+/* Collapsible arrow icon */
+.collapsible-trigger .collapsible-icon .pgn__icon{color:#6b7280!important}
+
+/* Active section trigger */
+.active-section .collapsible-trigger{background:rgba(10,124,110,.06)!important;border-radius:8px!important}
+.active-section .collapsible-trigger .text-gray-300{color:#0a7c6e!important}
+
+/* Outline sidebar heading back arrow */
+.outline-sidebar-heading .pgn__icon{color:#0a7c6e!important}
+.outline-sidebar-heading .pgn__icon path{fill:#0a7c6e!important}
+
+/* Toggle sidebar button */
+.outline-sidebar-toggle-btn{color:#0a7c6e!important}
+.outline-sidebar-toggle-btn svg path{fill:#0a7c6e!important}
+
+/* Top unit navigation arrows */
+.previous-button.btn-icon-primary,.next-button.btn-icon-primary{color:#0a7c6e!important}
+.previous-button.btn-icon-primary svg path,.next-button.btn-icon-primary svg path{fill:#0a7c6e!important}
+
+/* Bottom Previous/Next buttons */
+button.previous-button.btn-outline-secondary{
+  border:1.5px solid #e2e5ea!important;
+  color:#6b7280!important;
+  border-radius:8px!important;
+  background:#ffffff!important;
+  font-weight:500!important;
+  padding:8px 24px!important;
+}
+a.next-button.btn-outline-primary{
+  background:#0a7c6e!important;
+  border-color:#0a7c6e!important;
+  color:#ffffff!important;
+  border-radius:8px!important;
+  font-weight:600!important;
+  padding:8px 24px!important;
+}
+a.next-button.btn-outline-primary:hover{
+  background:#065c52!important;
+  border-color:#065c52!important;
+}
+a.next-button.btn-outline-primary svg path{fill:#ffffff!important}
+/* NDU Learning - Monday re-injection */
+body,#root,.app-container{background-color:#fdf8f0!important}
+.learning-header{background:#ffffff!important;border-bottom:1px solid #e2e5ea!important;box-shadow:0 2px 4px rgba(0,0,0,.06)!important}
+[data-testid="instructor-toolbar"] .bg-primary{background:#0a7c6e!important}
+.course-tabs-navigation .nav-underline-tabs .nav-link{color:#6b7280!important;border-bottom:2px solid transparent!important}
+.course-tabs-navigation .nav-underline-tabs .nav-link.active{color:#0a7c6e!important;border-bottom:2px solid #0a7c6e!important;font-weight:600!important}
+.outline-sidebar-wrapper{background:#ffffff!important}
+.outline-sidebar-heading-wrapper{background:#f0faf8!important}
+.outline-sidebar-heading{color:#0a7c6e!important;font-weight:700!important}
+.collapsible-trigger .text-gray-300{color:#0a7c6e!important}
+.collapsible-trigger .text-gray-300 path{fill:#0a7c6e!important}
+.text-success{color:#22c55e!important}
+.text-success path{fill:#22c55e!important}
+.bg-info-100{background:rgba(10,124,110,.1)!important;border-left:3px solid #0a7c6e!important}
+.bg-info-100 a{color:#0a7c6e!important}
+.collapsible-body a .text-success{color:#22c55e!important}
+.collapsible-body a .text-success path{fill:#22c55e!important}
+.collapsible-body a .text-gray-300{color:#0a7c6e!important}
+.collapsible-body a .text-gray-300 path{fill:#0a7c6e!important}
+button.previous-button.btn-outline-secondary,a.previous-button.btn-outline-secondary{border:1.5px solid #e2e5ea!important;color:#6b7280!important;border-radius:8px!important;background:#fff!important;font-weight:500!important}
+a.next-button.btn-outline-primary,button.next-button.btn-outline-primary{background:#0a7c6e!important;border-color:#0a7c6e!important;color:#fff!important;border-radius:8px!important;font-weight:600!important}
+a.next-button.btn-outline-primary svg path{fill:#fff!important}
+.btn-icon-primary{color:#0a7c6e!important}
+.text-primary,.text-primary-500{color:#0a7c6e!important}
+.text-primary path{fill:#0a7c6e!important}
+.btn-primary{background:#0a7c6e!important;border-color:#0a7c6e!important;border-radius:8px!important}
+.btn-outline-primary{border-color:#0a7c6e!important;color:#0a7c6e!important;border-radius:8px!important}
+.btn-outline-primary:hover{background:#0a7c6e!important;color:#fff!important}
+.wrapper-footer,.wrapper.wrapper-footer{background:linear-gradient(135deg,#065c52,#0a7c6e)!important}
+.wrapper-footer *{color:rgba(255,255,255,.85)!important}
+.wrapper-footer img{filter:brightness(0) invert(1) opacity(.8)!important}
+/* Fix completion circles - filled teal for active/incomplete */
+[data-testid="completion-solid-icon"] {
+  color:#0a7c6e!important;
+  background:#0a7c6e!important;
+  border-radius:50%!important;
+  width:20px!important;
+  height:20px!important;
+}
+[data-testid="completion-solid-icon"] path {
+  fill:#ffffff!important;
+}
+
+/* Completed checkmark - green filled */
+[data-testid="check-circle-icon"] {
+  color:#22c55e!important;
+  background:#22c55e!important;
+  border-radius:50%!important;
+}
+[data-testid="check-circle-icon"] path {
+  fill:#ffffff!important;
+}
+
+/* Active section sidebar border */
+.active-section .collapsible-trigger {
+  border-left:3px solid #0a7c6e!important;
+  background:rgba(10,124,110,.05)!important;
+  border-radius:0 8px 8px 0!important;
+}
+
+/* Bottom Previous button */
+a.previous-button.btn-outline-secondary,
+button.previous-button.btn-outline-secondary {
+  background:#ffffff!important;
+  border:1.5px solid #e2e5ea!important;
+  color:#6b7280!important;
+  border-radius:8px!important;
+  font-weight:500!important;
+}
+
+/* Bottom Next button - solid teal */
+a.next-button.btn-outline-primary,
+button.next-button.btn-outline-primary {
+  background:#0a7c6e!important;
+  border-color:#0a7c6e!important;
+  color:#ffffff!important;
+  border-radius:8px!important;
+  font-weight:600!important;
+}
+a.next-button.btn-outline-primary svg path {
+  fill:#ffffff!important;
+}
+a.next-button.btn-outline-primary:hover {
+  background:#065c52!important;
+}
+/* Sidebar background - cream like NDU */
+.outline-sidebar-wrapper{background:#fdf8f0!important;border-radius:12px!important;border:1px solid #e2e5ea!important}
+.outline-sidebar-heading-wrapper{background:#fdf8f0!important;border-bottom:1px solid #e2e5ea!important}
+
+/* Course title in sidebar - teal bold like NDU */
+.outline-sidebar-heading{color:#0a7c6e!important;font-weight:700!important;font-size:16px!important}
+
+/* Chapter label - small teal uppercase */
+.outline-sidebar-heading-wrapper .btn-link span:last-child{color:#0a7c6e!important;font-size:13px!important;font-weight:700!important}
+
+/* Unit items - show duration style */
+.collapsible-body a{padding:8px 12px 8px 16px!important;border-radius:8px!important;margin:2px 4px!important}
+.collapsible-body a:hover{background:rgba(10,124,110,.08)!important}
+.collapsible-body a .col-10{font-size:13px!important;font-weight:500!important;color:#1a1a2e!important}
+
+/* Green play icon in unit items */
+.collapsible-body a svg{color:#22c55e!important}
+.collapsible-body a svg path{fill:#22c55e!important}
+
+/* Active unit item */
+.bg-info-100{background:rgba(10,124,110,.1)!important;border-left:3px solid #0a7c6e!important;border-radius:0 8px 8px 0!important}
+
+/* Collapsible trigger text */
+.collapsible-trigger .col-9 span{font-size:13px!important;font-weight:500!important;color:#1a1a2e!important}
+
+/* Filled circle for incomplete - teal */
+[data-testid="completion-solid-icon"]{color:#0a7c6e!important}
+[data-testid="completion-solid-icon"] path{fill:#0a7c6e!important}
+
+/* Green checkmark for completed */
+[data-testid="check-circle-icon"]{color:#22c55e!important}
+[data-testid="check-circle-icon"] path{fill:#22c55e!important}
+
+/* Main content area */
+.unit-container{background:#fdf8f0!important}
+.unit{background:#ffffff!important;border-radius:12px!important;box-shadow:0 2px 8px rgba(0,0,0,.06)!important}
+
+/* Bottom nav buttons */
+a.previous-button.btn-outline-secondary,button.previous-button.btn-outline-secondary{background:#fff!important;border:1.5px solid #e2e5ea!important;color:#6b7280!important;border-radius:8px!important}
+a.next-button.btn-outline-primary,button.next-button.btn-outline-primary{background:#0a7c6e!important;border-color:#0a7c6e!important;color:#fff!important;border-radius:8px!important;font-weight:600!important}
+a.next-button svg path{fill:#fff!important}
+/* Transform circle icon into green square play button like NDU */
+.collapsible-trigger .col-auto {
+  position:relative!important;
+  width:32px!important;
+  height:32px!important;
+  flex-shrink:0!important;
+}
+
+/* Hide the original circle SVG */
+.collapsible-trigger [data-testid="completion-solid-icon"] {
+  display:none!important;
+}
+.collapsible-trigger [data-testid="check-circle-icon"] {
+  display:none!important;
+}
+
+/* Add green square play button via pseudo element */
+.collapsible-trigger .col-auto::before {
+  content:''!important;
+  display:block!important;
+  width:28px!important;
+  height:28px!important;
+  background:#22c55e!important;
+  border-radius:6px!important;
+  position:absolute!important;
+  top:0!important;
+  left:0!important;
+}
+
+/* Play triangle inside */
+.collapsible-trigger .col-auto::after {
+  content:''!important;
+  display:block!important;
+  width:0!important;
+  height:0!important;
+  border-style:solid!important;
+  border-width:5px 0 5px 9px!important;
+  border-color:transparent transparent transparent #ffffff!important;
+  position:absolute!important;
+  top:9px!important;
+  left:11px!important;
+}
+
+/* Completed items - darker green square */
+.active-section .collapsible-trigger .col-auto::before,
+[data-testid="check-circle-icon"] ~ .col-auto::before {
+  background:#065c52!important;
+}
+
+/* Title text styling like NDU */
+.collapsible-trigger .col-9 .align-middle {
+  display:block!important;
+  font-size:13px!important;
+  font-weight:500!important;
+  color:#1a1a2e!important;
+  line-height:1.3!important;
+}
+
+/* Remove arrow chevron from collapsible trigger */
+.collapsible-trigger .collapsible-icon {
+  display:none!important;
+}
+
+/* Sidebar overall */
+.outline-sidebar-wrapper{
+  background:#fdf8f0!important;
+  border-radius:12px!important;
+  border:1px solid #e2e5ea!important;
+}
+
+/* Unit items inside - green play icon */
+.collapsible-body a .col-auto svg{
+  color:#22c55e!important;
+  background:#22c55e!important;
+  border-radius:4px!important;
+  padding:2px!important;
+}
+.collapsible-body a .col-auto svg path{fill:#ffffff!important}
+/* All play buttons - dark teal */
+.collapsible-trigger .col-auto::before {
+  background:#0a7c6e!important;
+}
+
+/* Unit item icon also dark teal */
+.collapsible-body a .col-auto svg {
+  color:#0a7c6e!important;
+  background:#0a7c6e!important;
+  border-radius:4px!important;
+  padding:2px!important;
+}
+.collapsible-body a .col-auto svg path { fill:#ffffff!important; }
+
+/* Active/selected item - light green bg like NDU */
+.bg-info-100 {
+  background:rgba(10,124,110,.12)!important;
+  border-left:3px solid #0a7c6e!important;
+  border-radius:0 8px 8px 0!important;
+}
+
+/* Active section trigger - light green bg */
+.active-section > .collapsible-trigger {
+  background:rgba(10,124,110,.10)!important;
+  border-radius:8px!important;
+}
+
+/* Hover on any sidebar item */
+.collapsible-trigger:hover {
+  background:rgba(10,124,110,.07)!important;
+  border-radius:8px!important;
+  cursor:pointer!important;
+}
+
+.collapsible-body a:hover {
+  background:rgba(10,124,110,.07)!important;
+  border-radius:8px!important;
+}
+/* Active/selected item - #ecf8df light green like NDU */
+.bg-info-100 {
+  background:#ecf8df!important;
+  border-left:3px solid #0a7c6e!important;
+  border-radius:0 8px 8px 0!important;
+}
+
+/* Active section trigger */
+.active-section > .collapsible-trigger {
+  background:#ecf8df!important;
+  border-radius:8px!important;
+}
+
+/* Hover on sidebar items */
+.collapsible-trigger:hover {
+  background:#ecf8df!important;
+  border-radius:8px!important;
+  cursor:pointer!important;
+}
+
+.collapsible-body a:hover {
+  background:#ecf8df!important;
+  border-radius:8px!important;
+}
+
+/* Breadcrumb - taller and starts from left edge */
+
+
+
+/* Dynamic breadcrumb styling */
+#ndu-breadcrumb {
+  background:#f5a623!important;
+  color:#1a1a2e!important;
+  font-size:14px!important;
+  font-weight:600!important;
+  padding:12px 32px!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+}
+#ndu-breadcrumb a {
+  color:#1a1a2e!important;
+  text-decoration:none!important;
+}
+#ndu-breadcrumb a:hover {
+  text-decoration:underline!important;
+}
+/* Align breadcrumb text with OmniKampus logo */
+#ndu-breadcrumb {
+  padding-left:180px!important;
+}
+@media (max-width:768px) {
+  #ndu-breadcrumb { padding-left:16px!important; }
+}
+/* Studio button - white outline visible */
+[data-testid="instructor-toolbar"] .btn-inverse-outline-primary,
+[data-testid="instructor-toolbar"] a.btn-inverse-outline-primary {
+  border:1.5px solid #ffffff!important;
+  color:#ffffff!important;
+  background:transparent!important;
+  border-radius:8px!important;
+  font-weight:500!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+[data-testid="instructor-toolbar"] a.btn-inverse-outline-primary:hover {
+  background:rgba(255,255,255,.15)!important;
+  color:#ffffff!important;
+}
+
+/* View course in label */
+[data-testid="instructor-toolbar"] .col-form-label {
+  color:#ffffff!important;
+}
+
+/* Staff dropdown button */
+[data-testid="instructor-toolbar"] .btn-inverse-outline-primary#masquerade-widget-toggle {
+  border:1.5px solid #ffffff!important;
+  color:#ffffff!important;
+}
+
+/* ===== Custom course tabs ===== */
+.ndu-unit-tabs-wrap{margin-top:24px!important;background:#fff!important;border-radius:14px!important;padding:0 0 20px 0!important;border:1px solid #e5e7eb!important;overflow:hidden!important}
+.ndu-unit-tabs{display:flex!important;flex-wrap:wrap!important;gap:26px!important;padding:16px 24px 0 24px!important;border-bottom:1px solid #d1d5db!important;background:#fff!important}
+.ndu-unit-tab{appearance:none!important;border:none!important;background:transparent!important;color:#7a7a7a!important;font-size:18px!important;font-weight:600!important;padding:0 0 14px 0!important;cursor:pointer!important;position:relative!important}
+.ndu-unit-tab.active{color:#066b5f!important}
+.ndu-unit-tab.active::after{content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:-1px!important;height:3px!important;background:#066b5f!important;border-radius:3px 3px 0 0!important}
+.ndu-unit-panel{display:none!important;padding:24px!important;background:#fff!important}
+.ndu-unit-panel.active{display:block!important}
+.ndu-summary-text{font-size:18px!important;line-height:1.65!important;color:#2f2f2f!important}
+.ndu-lab-btn,.ndu-assign-btn,.ndu-more-btn{display:inline-block!important;padding:12px 28px!important;border:1.5px solid #d79a2b!important;border-radius:999px!important;background:#fff!important;color:#2f2f2f!important;font-size:18px!important;font-weight:500!important;text-decoration:none!important;transition:all .2s ease!important}
+.ndu-lab-btn:hover,.ndu-assign-btn:hover,.ndu-more-btn:hover{background:#fff8eb!important;text-decoration:none!important}
+.ndu-more-layout{display:flex!important;gap:28px!important;align-items:flex-start!important}
+.ndu-more-menu{min-width:180px!important;border-right:1px solid #d1d5db!important;padding-right:20px!important}
+.ndu-more-menu button{display:block!important;width:100%!important;text-align:left!important;background:transparent!important;border:none!important;padding:14px 12px!important;margin-bottom:8px!important;border-radius:6px!important;font-size:16px!important;cursor:pointer!important;color:#444!important}
+.ndu-more-menu button.active{background:#dbe8c9!important;color:#3d4a37!important;font-weight:600!important}
+.ndu-more-content{flex:1!important}
+.ndu-notes-box{width:100%!important;min-height:110px!important;border:1px solid #cfd4dc!important;border-radius:10px!important;padding:14px!important;font-size:16px!important;resize:vertical!important;margin-bottom:18px!important}
+.ndu-save-notes{display:inline-flex!important;align-items:center!important;gap:10px!important;padding:12px 22px!important;border:1.5px solid #d79a2b!important;border-radius:999px!important;background:#fff!important;font-size:16px!important;cursor:pointer!important}
+</style>
+<script>
+(function() {
+  function addBreadcrumb() {
+    if (document.getElementById('ndu-breadcrumb')) return;
+    var header = document.querySelector('.learning-header, header, nav');
+    if (!header) return;
+
+    var courseName = '';
+    var titleEl = document.querySelector('.course-title, h1, [class*="course-name"]');
+    if (titleEl) courseName = titleEl.innerText.trim();
+    if (!courseName) {
+      var match = document.title.match(/^(.+?)\s*[|\-–]/);
+      if (match) courseName = match[1].trim();
+    }
+    if (!courseName) courseName = 'Course';
+
+    var crumb = document.createElement('div');
+    crumb.id = 'ndu-breadcrumb';
+    crumb.style.cssText = 'background:#f5c97a;padding:10px 40px;font-size:14px;font-weight:600;color:#1a1a1a;width:100%;box-sizing:border-box;border-bottom:1px solid #e0a840;';
+    crumb.innerHTML = '<a href="/" style="color:#1a1a1a;text-decoration:none;">Home</a> &rsaquo; <a href="/dashboard" style="color:#1a1a1a;text-decoration:none;">Recommended Course</a> &rsaquo; <span>' + courseName + '</span>';
+    header.insertAdjacentElement('afterend', crumb);
+  }
+
+  var tries = 0;
+  var interval = setInterval(function() {
+    addBreadcrumb();
+    tries++;
+    if (tries > 30) clearInterval(interval);
+  }, 1000);
+})();
+</script>
+<script>
+(function(){
+  function injectLinks(menu) {
+    if (menu.querySelector('.injected-link')) return;
+    var seen = {};
+    var links = document.querySelectorAll('.echi-learning-help-link');
+    links.forEach(function(link) {
+      var text = link.textContent.trim();
+      if (seen[text]) return;
+      seen[text] = true;
+      var item = document.createElement('a');
+      item.href = link.href;
+      item.target = link.target || '_self';
+      item.rel = link.rel || '';
+      item.textContent = text + ' \u00BB';
+      item.className = 'dropdown-item injected-link';
+      item.style.cssText = 'display:block;padding:8px 24px;color:#212529;text-decoration:none;font-size:14px;';
+      menu.appendChild(item);
+    });
+    var navLinks = document.querySelectorAll('.nav-course a');
+    navLinks.forEach(function(link) {
+      var text = link.textContent.trim();
+      if (seen[text] || menu.querySelector('a[href="'+link.href+'"]')) return;
+      seen[text] = true;
+      var item = document.createElement('a');
+      item.href = link.href;
+      item.textContent = text + ' \u00BB';
+      item.className = 'dropdown-item injected-link';
+      item.style.cssText = 'display:block;padding:8px 24px;color:#212529;text-decoration:none;font-size:14px;';
+      menu.appendChild(item);
+    });
+  }
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(m) {
+      m.addedNodes.forEach(function(node) {
+        if (node.nodeType === 1) {
+          var menu = node.classList && node.classList.contains('dropdown-menu') ? node : node.querySelector && node.querySelector('.dropdown-menu.show');
+          if (menu) injectLinks(menu);
+        }
+      });
+    });
+  });
+  observer.observe(document.body, {childList: true, subtree: true});
+  document.addEventListener('click', function() {
+    setTimeout(function() {
+      var menu = document.querySelector('.dropdown-menu.show');
+      if (menu) injectLinks(menu);
+    }, 100);
+  });
+})();
+</script></body></html>
+<script>
+(function() {
+  var DASHBOARD = "https://apps.edx.echiphub.in/learner-dashboard/";
+  function getCourseId() {
+    var m = window.location.pathname.match(/\/learning\/course\/(course-v1:[^\/]+)/);
+    return m ? m[1] : null;
+  }
+  function isHomePage() {
+    return /\/home$/.test(window.location.pathname);
+  }
+  var BAD_TITLES = ["recommended course", "course", "edtech", "loading"];
+  function isTitleReady() {
+    var parts = document.title.split("|").map(function(s){ return s.trim().toLowerCase(); });
+    if (parts.length < 2) return false;
+    var courseName = parts[parts.length - 2];
+    if (courseName.length < 5) return false;
+    for (var i = 0; i < BAD_TITLES.length; i++) {
+      if (courseName === BAD_TITLES[i]) return false;
+    }
+    return true;
+  }
+  function buildCrumbHTML() {
+    var parts = document.title.split("|").map(function(s){ return s.trim(); });
+    var courseId = getCourseId();
+    var courseHomeUrl = courseId ? "https://apps.edx.echiphub.in/learning/course/" + courseId + "/home" : "#";
+    var courseName = parts[parts.length - 2];
+    var unitName = parts[0];
+    var homeLink = "<a href=" + DASHBOARD + " style=color:#1a1a2e;text-decoration:none;>Home</a>";
+    var courseLink = "<a href=" + courseHomeUrl + " style=color:#1a1a2e;text-decoration:none;>" + courseName + "</a>";
+    if (isHomePage()) {
+      return homeLink + " &rsaquo; " + courseName;
+    } else {
+      return homeLink + " &rsaquo; " + courseLink + " &rsaquo; " + unitName;
+    }
+  }
+  function placeBreadcrumb() {
+    var crumb = document.getElementById("ndu-breadcrumb");
+    if (!crumb) return;
+    var toolbar = document.querySelector("[data-testid=instructor-toolbar]");
+    if (toolbar) {
+      if (toolbar.nextElementSibling !== crumb) toolbar.insertAdjacentElement("afterend", crumb);
+    } else {
+      var header = document.querySelector("header.learning-header");
+      if (header && header.nextElementSibling !== crumb) header.insertAdjacentElement("afterend", crumb);
+    }
+  }
+  function fixResumeButton() {
+    document.querySelectorAll("a, button").forEach(function(el) {
+      if (el.textContent.trim() === "Resume course") {
+        el.style.setProperty("color", "#ffffff", "important");
+      }
+    });
+  }
+  // Create crumb hidden from start
+  var crumb = document.createElement("div");
+  crumb.id = "ndu-breadcrumb";
+  crumb.style.cssText = "background:#f5a623;color:#1a1a2e;padding:6px 1.5rem;font-size:13px;font-weight:500;width:100%;box-sizing:border-box;border-bottom:1px solid #d4941f;display:none;";
+  document.addEventListener("DOMContentLoaded", function() {
+    document.body.appendChild(crumb);
+  });
+  var lastUrl = location.href;
+  // Single interval does everything - no MutationObserver for show/hide
+  setInterval(function() {
+    // Handle SPA navigation
+    if (location.href !== lastUrl) {
+      lastUrl = location.href;
+      crumb.style.display = "none";
+      crumb.innerHTML = "";
+    }
+    var header = document.querySelector("header.learning-header");
+    if (!header) return;
+    // Place crumb correctly
+    placeBreadcrumb();
+    fixResumeButton();
+    // Show only when title is ready
+    if (isTitleReady()) {
+      if (crumb.innerHTML === "" || crumb.style.display === "none") {
+        crumb.innerHTML = buildCrumbHTML();
+        crumb.style.display = "block";
+      }
+    }
+  }, 300);
+})();
+</script>

@@ -64,3 +64,12 @@
     left: 10px !important;
   }
 }
+
+/* ===== GLOBAL MONTSERRAT FONT ===== */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+body, body *:not(.fa):not(.fas):not(.far):not(.fab):not(.bi):not([class^="bi-"]):not([class*=" bi-"]):not([class*="fa-"]) {
+  font-family: "Montserrat", sans-serif !important;
+}
+.fa,.fas,.far,.fab,[class*="fa-"]{font-family:"FontAwesome"!important}
+[class^="bi-"]::before,[class*=" bi-"]::before{font-family:"bootstrap-icons"!important}
+/* ===== END GLOBAL MONTSERRAT ===== */
