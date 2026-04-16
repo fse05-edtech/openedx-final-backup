@@ -1,0 +1,91 @@
+@import "./custom/resetter";
+@import "./custom/variables";
+@import "./custom/logout";
+@import "./custom/index";
+@import "./custom/courses_list";
+@import "./custom/header";
+@import "./custom/footer";
+@import "./custom/_dashboard";
+@import "./custom/courses";
+@import "./custom/discovery";
+@import "./custom/course_about";
+@import "./custom/learning_instructor";
+@import "./custom/certificate";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+*:not(.fa) {
+  font-family: "Cabin" !important;
+}
+
+a,
+a:not(.btn),
+a:visited:not(.btn),
+a:not(.btn):hover,
+a:not(.btn):focus,
+a:visited:not(.btn):hover,
+a:visited:not(.btn):focus {
+  color: $color-2;
+}
+
+#content {
+  #unenroll-modal {
+    border: none;
+    background: $color-2;
+
+    .inner-wrapper {
+      border: none;
+
+      button.close-modal span {
+        color: $text-2;
+      }
+
+      #unenroll_form {
+        .submit {
+          text-align: center !important;
+
+          input.submit-button {
+            all: unset !important;
+            padding: 10px 20px !important;
+            background: $color-2 !important;
+            border-radius: 3px !important;
+            color: $text-white !important;
+            cursor: pointer !important;
+          }
+        }
+      }
+    }
+  }
+
+  article.register-choose {
+    header.page-header {
+      h3.title {
+        color: $color-2;
+      }
+    }
+
+    #track_selection_upgrade {
+      all: unset;
+      background: $color-2;
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .register-choice-audit .list-actions .action-select input {
+      all: unset;
+      background: $color-4;
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+}

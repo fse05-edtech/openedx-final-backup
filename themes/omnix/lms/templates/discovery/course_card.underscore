@@ -1,0 +1,54 @@
+<article class="course" role="region" aria-label="<%- content.display_name %>">
+    <a href="/courses/<%- course %>/about">
+        <header class="course-image">
+            <div class="cover-image">
+                <img src="<%- image_url %>" onerror="this.onerror=null;this.src='http://via.placeholder.com/640x360';" alt="<%- content.display_name %> <%- content.number %>" />
+            </div>
+        </header>
+        <section class="course-info" aria-hidden="true">
+            <h2 class="course-name">
+                <span class="course-title"><%- content.display_name %></span>
+                <div class="course-code">( <%- content.number %> )</div>
+                <div class="course-description"><%- content.short_description %></div>
+                <span class="course-organization"><%- org %></span>
+            </h2>
+
+            <div class="course-date" aria-hidden="true">
+                <%- interpolate(
+                      gettext("Starts: %(start_date)s"),
+                      { start_date: start }, true
+                    ) %>
+            </div>
+        </section>
+        <div class="sr">
+            <ul>
+                <li><%- org %></li>
+                <li><%- content.number %></li>
+                <li><%- gettext("Starts") %><time itemprop="startDate" datetime="<%- start %>"><%- start %></time></li>
+            </ul>
+        </div>
+    </a>
+</article>
+
+<script type="text/javascript"> 
+    $(document).ready(() => {
+        $('.course-description').each((index, i) => {
+            if(i.innerText.length == 0) {
+                i.innerText = "Kısa Tanım Alanı. Studio'dan bu alana ders ile ilgili kısa bir tanım yazabilirsiniz.";
+                return;
+            }
+            if(i.innerText.length < 150) {
+                return;
+            }
+            i.innerText = i.innerText.substr(0,150) + '...';
+          })
+
+          $('.course-title').each((index, i) => {
+            if(i.innerText.length > 50) {
+                i.innerText = i.innerText.substr(0,47) + '...';
+                return;
+            }
+          })
+    })
+  </script>
+

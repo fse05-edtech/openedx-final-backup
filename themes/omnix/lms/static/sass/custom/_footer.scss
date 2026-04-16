@@ -1,0 +1,144 @@
+.wrapper.wrapper-footer {
+  border: none;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.15);
+  background-color: $color-4;
+  display: flex;
+  align-items: center;
+  padding: 25px 0 10px 0;
+
+  footer#footer-openedx {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 100%;
+    gap: 50px;
+
+    .omni-footer {
+      width: 100%;
+      padding: 20px 50px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      @media (max-width: 1280px) {
+        flex-direction: column;
+        gap: 50px;
+        align-items: center;
+      }
+    }
+
+    .omni-copyright {
+      display: flex;
+      flex-direction: column-reverse;
+      .copyright-text {
+        text-align: center;
+        font-family: $font-quick;
+        font-weight: bolder;
+        color: $text-1;
+        filter: $text-filter;
+      }
+
+      .copyright-links {
+        display: flex;
+        list-style-type: none;
+        gap: 20px;
+        font-size: 12px;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 20px;
+
+        li a {
+          color: $text-2;
+          transition: all 0.25s;
+          font-family: $font-quick;
+          font-weight: 600;
+          display: inline-block;
+          filter: $text-filter;
+
+          &:hover {
+            color: $text-1;
+            transform: scale(1.01);
+            text-decoration: none !important;
+            border-bottom: none !important;
+          }
+        }
+      }
+    }
+
+    .omni-social {
+      text-align: center;
+
+      .omni-social_title {
+        h2 {
+          color: $text-2;
+          font-weight: bolder;
+          font-family: $font-quick;
+          font-size: 20px;
+          border-bottom: 1px dotted $text-2;
+          padding: 10px;
+          filter: $text-filter;
+        }
+      }
+      .omni-social_links {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+
+        .omni-social_link {
+          transition: all 0.25s;
+
+          img {
+            height: 30px;
+            filter: $text-2-filter;
+          }
+
+          &:hover {
+            border-bottom: none !important;
+            text-decoration: none !important;
+            transform: scale(1.01);
+          }
+        }
+      }
+    }
+
+    .omni-footer-logo {
+      display: flex;
+      flex-direction: column-reverse;
+
+      p {
+        margin: 0;
+
+        &:nth-child(2) {
+          text-align: right;
+          img {
+            border-bottom: 1px dotted $text-2;
+          }
+        }
+        a {
+          transition: all 0.25s;
+          &:hover {
+            text-decoration: none !important;
+            transform: scale(1.01);
+            border-bottom: none !important;
+          }
+
+          img {
+            height: 52px;
+            width: auto;
+            filter: $text-2-filter;
+
+            &.artistanbul-logo {
+              filter: $text-2-filter;
+              height: 50px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  footer#footer-openedx::after {
+    display: none;
+  }
+}

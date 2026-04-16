@@ -1,0 +1,18 @@
+#content {
+  h1.omni-logout-title,
+  p.omni-logout-text,
+  a.omni-logout-link {
+    font-family: $font-quick;
+    color: $text-1;
+  }
+
+  a.omni-logout-link {
+    color: $color-2;
+    transition: all 0.25s;
+
+    &:hover {
+      color: $color-2;
+      opacity: 0.75;
+    }
+  }
+}

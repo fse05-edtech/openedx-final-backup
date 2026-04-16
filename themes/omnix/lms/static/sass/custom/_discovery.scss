@@ -1,0 +1,236 @@
+#discovery-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+  gap: 20px;
+  animation: top-anim 0.75s ease-in-out;
+  animation-delay: 1s;
+  animation-fill-mode: both;
+
+  @media (max-width: 991px) {
+    flex-direction: column-reverse;
+    gap: 0;
+  }
+
+  #discovery-message {
+    font-family: $font-quick;
+    color: $text-2;
+    font-size: 20px;
+    text-align: center;
+    flex-shrink: 0;
+    max-width: 422px;
+    width: 100%;
+    margin-right: 0;
+
+    @media (max-width: 1679px) {
+      max-width: 367px;
+      font-size: 20px;
+    }
+
+    @media (max-width: 1439px) {
+      width: 300px;
+    }
+
+    @media (max-width: 1023px) {
+      width: 240px;
+      font-size: 18px;
+    }
+  }
+
+  form.wrapper-search-input {
+    display: flex;
+    align-items: center;
+    max-width: 1350px;
+    width: 100%;
+
+    @media (max-width: 1679px) {
+      max-width: 1175px;
+    }
+
+    #discovery-input {
+      border-radius: none;
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+      background-color: #f9f9f9;
+      color: $text-1;
+      font-weight: bolder;
+      box-shadow: none;
+      border: 1px solid $color-2;
+      color: $text-1;
+      border: 1px solid $border;
+      height: 45px;
+
+      &::placeholder {
+        font-size: 14px;
+        font-family: $font-quick;
+        color: $text-3;
+      }
+
+      &:focus {
+        border-color: rgba($color: $color-2, $alpha: 0.35);
+      }
+    }
+
+    button.discovery-submit {
+      background-color: $color-2 !important;
+      border-color: $color-2 !important;
+      box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.15) !important;
+      border-radius: 0 !important;
+      border-top-right-radius: 5px !important;
+      border-bottom-right-radius: 5px !important;
+      position: unset;
+      height: 45px;
+
+      #loading-indicator {
+        background: $color-2;
+      }
+    }
+
+    .omni-filter-btn {
+      position: relative;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      background-color: $color-2;
+      border-radius: 5px;
+      margin-left: 10px;
+      color: $text-white;
+      font-size: 25px;
+      border: 1px solid $border;
+      cursor: pointer;
+      transition: all 0.25s;
+
+      &:hover {
+        text-decoration: none;
+        opacity: 0.85;
+      }
+
+      #omni-filter-checkbox {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.courses-and-filters {
+  display: flex;
+  column-gap: 20px;
+
+  aside.search-facets.phone-menu {
+    background-color: #ffffff;
+    border: none;
+    max-width: 0;
+    width: 100%;
+    overflow: hidden;
+    transition: all 1s;
+    animation: filter-anim 0.25s;
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 2px solid $border;
+    transition: all 0.25s;
+    margin: 0;
+
+    &.open-filter {
+      max-width: 300px;
+    }
+
+    .search-facets-lists {
+      width: 100%;
+    }
+
+    h2.header-search-facets {
+      font-weight: bolder;
+      color: $text-1;
+      text-transform: uppercase;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+      font-family: $font-quick;
+    }
+
+    h3.header-facet {
+      font-weight: bolder;
+      color: $text-1;
+      text-transform: uppercase;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+      font-family: $font-quick;
+      border-top: none;
+    }
+  }
+
+  ul.facet-list.collapse {
+    li button.facet-option {
+      transition: all 0.25 !important;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+      font-weight: 400;
+      font-family: $font-quick;
+
+      &:hover {
+        background: $color-2 !important;
+        color: #fff;
+      }
+
+      &:focus,
+      &.selected {
+        background-color: $color-2-bg;
+      }
+    }
+  }
+}
+
+#filter-bar {
+  background-color: #ffffff;
+  .filters-inner {
+    border: none;
+
+    li.active-filter {
+      background-color: $color-2;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+      border-radius: 3px;
+
+      button.facet-option {
+        color: #fff;
+
+        span:not(.fa) {
+          font-family: $font-quick;
+        }
+      }
+    }
+
+    #clear-all-filters {
+      color: $text-1;
+      font-weight: bolder;
+      font-family: $font-quick;
+
+      &:hover {
+        background-color: $color-2-bg;
+      }
+    }
+  }
+}
+
+@keyframes discovery-input-anim {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes filter-anim {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

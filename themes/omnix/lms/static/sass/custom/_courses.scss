@@ -1,0 +1,183 @@
+#main {
+  .find-courses {
+    background: unset;
+  }
+
+  .courses {
+    width: 100% !important;
+
+    .courses-list,
+    .courses-listing {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      column-gap: 20px;
+      row-gap: 75px;
+      animation: bottom-anim 0.75s ease-in-out;
+      animation-delay: 1s;
+      animation-fill-mode: both;
+
+      .courses-listing-item {
+        margin: 0;
+        width: 300px;
+        float: unset;
+
+        @media (min-width: 980px) {
+          margin: 0;
+          width: 300px;
+          float: unset;
+        }
+
+        article.course {
+          border: none;
+          border-radius: 3px;
+          box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+          transition: all 0.25s;
+          color: $text-1;
+          height: 400px;
+          margin-bottom: 0;
+          position: relative;
+          z-index: 1;
+
+          a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+
+            .course-image {
+              width: 100%;
+              box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+              .cover-image {
+                img {
+                  color: $text-3;
+                  font-size: 12px;
+                  height: 160px;
+                  width: 100%;
+                  object-fit: cover;
+                }
+              }
+            }
+
+            .course-info {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-end;
+              width: 100%;
+              height: auto !important;
+
+              .course-name {
+                width: 100%;
+
+                .course-title {
+                  margin: 0;
+                  margin-top: 10px;
+                  height: unset;
+                  color: $text-1;
+                  font-weight: bolder;
+                  text-align: center;
+                  font-size: 20px;
+                  padding: 20px 10px 0 10px;
+                }
+
+                .course-code {
+                  font-weight: bolder;
+                  color: $text-3;
+                  font-size: 11px;
+                  text-align: center;
+                }
+
+                .course-description {
+                  font-size: 13px;
+                  line-height: 1.5;
+                  padding: 20px;
+                }
+
+                .course-organization {
+                  font-weight: bolder;
+                  color: $text-2;
+                  position: absolute;
+                  bottom: 0;
+                  right: 0;
+                  padding: 10px 20px;
+                }
+              }
+            }
+
+            .course-date {
+              width: auto;
+              color: $text-white;
+              background-color: $color-2;
+              position: absolute;
+              font-size: 11px;
+              border-radius: 3px;
+              top: -8px;
+              left: 20px;
+
+              &::after {
+                content: "";
+                border-bottom: 8px solid #180907;
+                border-right: 8px solid transparent;
+                border-top-right-radius: 3px;
+                display: block;
+                height: 0;
+                position: absolute;
+                right: -6px;
+                top: 0;
+                width: 0;
+                z-index: -1;
+              }
+            }
+          }
+
+          .enroll-btn {
+            display: inline-block;
+            color: $color-2;
+            padding: 10px 20px;
+            margin: 10px auto 0 auto;
+            border-radius: 999px;
+            opacity: 0;
+            transition: all 0.25s;
+            font-size: 14px;
+            border: 2px solid $color-2;
+          }
+
+          &:hover {
+            box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.15);
+
+            box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px,
+              rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px,
+              rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+
+            box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px,
+              rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+              rgba(0, 0, 0, 0.09) 0px 16px 8px,
+              rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+            background: $white;
+
+            transform: scale(1.02);
+
+            .enroll-btn {
+              opacity: 1;
+            }
+
+            header.course-image {
+              .cover-image::before {
+                transition: all 0.25s;
+                opacity: 0;
+              }
+            }
+          }
+
+          &:focus header.course-image {
+            .cover-image::before {
+              transition: all 0.25s;
+              opacity: 0.3;
+            }
+          }
+        }
+      }
+    }
+  }
+}

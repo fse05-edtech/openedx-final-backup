@@ -1,0 +1,116 @@
+## mako
+<%page expression_filter="h"/>
+<%!
+  from django.urls import reverse
+  from django.utils.translation import gettext as _
+  from lms.djangoapps.branding.api import get_footer
+  from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_enabled
+%>
+<% footer = get_footer(is_secure=is_secure) %>
+<% icp_license_info = getattr(settings, 'ICP_LICENSE_INFO', {})%>
+<%namespace name='static' file='static_content.html'/>
+
+% if uses_bootstrap:
+  <div class="container-fluid wrapper-footer">
+    <footer>
+      <div class="row">
+        <div class="col-md-9">
+          <nav class="navbar site-nav navbar-expand-sm" aria-label="${_('About')}">
+            <ul class="navbar-nav">
+              % for item_num, link in enumerate(footer['navigation_links'], start=1):
+                <li class="nav-item">
+                  <a class="nav-link" href="${link['url']}">${link['title']}</a>
+                </li>
+              % endfor
+            </ul>
+          </nav>
+          <div class="wrapper-logo">
+            <p>
+              <a href="/">
+                <img alt="${_('organization logo')}" src="${footer['logo_image']}">
+              </a>
+            </p>
+          </div>
+          <p class="copyright">${footer['copyright']}
+               % if icp_license_info.get('icp_license'):
+                ${u" | {text}".format(text=icp_license_info.get('text'))}
+                <a href="${icp_license_info.get('icp_license_link', '#')}">
+                    ${u" {icp}".format(icp=icp_license_info.get('icp_license'))}
+                </a>
+              % endif
+          </p>
+          <nav class="navbar legal-nav navbar-expand-sm" aria-label="${_('Legal')}">
+            <ul class="navbar-nav">
+              % for item_num, link in enumerate(footer['legal_links'], start=1):
+                <li class="nav-item">
+                  <a class="nav-link" href="${link['url']}">${link['title']}</a>
+                </li>
+              % endfor
+              <li class="nav-item">
+                <a class="nav-link" href="${footer['edx_org_link']['url']}">${footer['edx_org_link']['text']}</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-md-3">
+          % if not hide_openedx_link:
+            <div class="footer-about-openedx">
+              <p>
+                <a href="${footer['openedx_link']['url']}">
+                  <img src="${footer['openedx_link']['image']}" alt="${footer['openedx_link']['title']}" width="175" />
+                </a>
+              </p>
+            </div>
+          % endif
+        </div>
+      </div>
+    </footer>
+  </div>
+% else:
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <div class="wrapper wrapper-footer nielit-footer">
+    <footer id="footer-openedx">
+      <div class="nielit-footer-main">
+        <div class="nielit-footer-brand">
+          <a href="/">
+            <img src="/static/omnix/images/nielit-logo.png" alt="NIELIT" class="nielit-logo">
+          </a>
+          <p class="nielit-desc">National Institute of Electronics &amp; Information Technology (NIELIT) Government of India</p>
+        </div>
+        <div class="nielit-footer-links">
+          <h3>Quick Link</h3>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/courses">All Courses</a></li>
+            <li><a href="http://135.237.83.28:8000/" target="_blank">Get Help</a></li>
+          </ul>
+        </div>
+        <div class="nielit-footer-address">
+          <h3>Address</h3>
+          <p>Block-3, Block A, East Kidwai Nagar, Kidwai Nagar,<br>New Delhi, Delhi 110023</p>
+          <div class="nielit-social">
+            <a href="https://facebook.com" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+            <a href="https://google.com" aria-label="Google"><i class="fa fa-google"></i></a>
+            <a href="https://instagram.com" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+            <a href="https://linkedin.com" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="nielit-footer-bottom">
+        <p>&copy; NIELIT 2026, All Rights Reserved.</p>
+      </div>
+    </footer>
+  </div>
+% endif
+% if include_dependencies:
+  <%static:js group='base_vendor'/>
+  <%static:css group='style-vendor'/>
+  <%include file="widgets/segment-io.html" />
+  <%include file="widgets/segment-io-footer.html" />
+% endif
+% if footer_css_urls:
+  % for url in footer_css_urls:
+    <link rel="stylesheet" type="text/css" href="${url}"></link>
+  % endfor
+% endif

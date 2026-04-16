@@ -1,0 +1,12 @@
+@media (min-width: 992px) {
+  #omni-navigation-bar .nav-links .secondary .nav-item {
+    padding: 0;
+    margin: 0 2px;
+  }
+}
+
+.wrapper-footer footer#footer-openedx a:hover,
+.wrapper-footer footer#footer-openedx a:focus,
+.wrapper-footer footer#footer-openedx a:active {
+  border-bottom: none;
+}

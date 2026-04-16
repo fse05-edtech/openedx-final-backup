@@ -1,0 +1,235 @@
+.accomplishment-rendering {
+  border: none !important;
+  border-radius: 3px !important;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15) !important;
+  position: relative !important;
+  background: none !important;
+  background-color: #fffcf3 !important;
+
+  img.certificate-border {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    filter: brightness(0) saturate(100%) invert(86%) sepia(23%) saturate(468%)
+      hue-rotate(10deg) brightness(95%) contrast(88%) !important;
+    opacity: 0.5;
+    z-index: 0;
+  }
+
+  .deco-corner {
+    display: none;
+  }
+}
+
+main.accomplishment.accomplishment-main {
+  background: #ffffff !important;
+}
+
+/* HTML: <div class="ribbon">Your text content</div> */
+.ribbon {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffffff;
+  display: none;
+}
+.ribbon {
+  --f: 0.4em; /* control the folded part*/
+  --r: 0.8em; /* control the ribbon shape */
+
+  position: absolute;
+  right: 50px;
+  top: calc(-1 * var(--f));
+  padding: 0.2em;
+  background: darkred;
+  border-left: var(--f) solid #000;
+  border-bottom: var(--r) solid darkred;
+  height: 300px;
+  width: 100px;
+  clip-path: polygon(
+    var(--f) 0,
+    100% 0,
+    100% 100%,
+    calc(50% + var(--f) / 2) calc(100% - var(--r)),
+    var(--f) 100%,
+    var(--f) var(--f),
+    0 var(--f)
+  );
+}
+
+.wrapper-view {
+  .wrapper-introduction {
+    margin-bottom: 40px !important;
+    section.introduction {
+      width: 100% !important;
+      text-align: center !important;
+      max-width: none !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+      flex-flow: wrap;
+    }
+  }
+}
+
+.accomplishment-rendering {
+  max-width: 840px !important;
+  width: 100% !important;
+
+  .accomplishment-rendering-box {
+    width: 100% !important;
+    padding: 40px !important;
+    z-index: 1;
+
+    .accomplishment-statement {
+      border-bottom: none !important;
+      margin-bottom: 2.5rem !important;
+      padding-bottom: 0 !important;
+
+      .certificate-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 100%;
+          opacity: 0.05;
+        }
+      }
+
+      .certificate-ribbon {
+        position: absolute !important;
+        top: -3px !important;
+        right: 80px !important;
+        border-top-left-radius: 8px !important;
+        border-top-right-radius: 8px !important;
+
+        img {
+          width: 80px !important;
+          filter: brightness(0) saturate(100%) invert(7%) sepia(100%)
+            saturate(4237%) hue-rotate(2deg) brightness(102%) contrast(106%)
+            drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.75)) !important;
+        }
+      }
+
+      .certificate-badge {
+        position: absolute;
+        right: 60px;
+        top: 75px;
+
+        img {
+          width: 120px !important;
+          filter: drop-shadow(1px 5px 1px rgba(0, 0, 0, 0.5)) !important;
+        }
+      }
+
+      .accomplishment-statement-box {
+        h1,
+        h3,
+        h4,
+        p {
+          text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25) !important;
+        }
+        .omni-certificate-h1,
+        .omni-certificate-h3 {
+          font-size: 60px !important;
+          font-weight: 600 !important;
+          color: darkred !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          line-height: 1 !important;
+        }
+
+        .omni-certificate-h3 {
+          font-size: 30px !important;
+        }
+
+        .omni-certificate-h4 {
+          margin: 30px 0 !important;
+          font-size: 16px;
+        }
+
+        .omni-certificate-name-box {
+          #certificate-name {
+            font-family: "Zeyada", cursive !important;
+            font-style: normal !important;
+            font-size: 70px !important;
+            font-weight: 400 !important;
+            color: #333 !important;
+            border-bottom: 2px dotted #999 !important;
+            display: inline-block !important;
+            padding: 10px 0 !important;
+          }
+        }
+        .omni-certificate-description-box {
+          margin-top: 30px !important;
+
+          .omni-certificate-description {
+            font-size: 16px;
+            max-width: 540px;
+            text-align: center;
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    .accomplishment-signatories {
+      display: none;
+    }
+
+    .accomplishment-orgs {
+      display: none;
+    }
+
+    .omni-signatories {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+
+      .signature-box {
+        .signature {
+          height: 120px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          strong {
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25) !important;
+          }
+
+          .signature-img {
+            img {
+              width: 150px !important;
+            }
+          }
+
+          .signature-name {
+            margin-top: auto;
+            margin-bottom: 3px;
+          }
+
+          .signature-title {
+            opacity: 0.5;
+            font-size: 15px;
+          }
+        }
+      }
+
+      .signature-badge {
+        display: none;
+        img {
+          filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5)) !important;
+          width: 85px !important;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+#content {
+  .course-material {
+    .course-tabs {
+      .tab {
+        a {
+          font-weight: 600;
+          color: $text-1;
+
+          &.active {
+            color: $color-2;
+            border-color: $color-2;
+          }
+
+          &:hover {
+            color: $color-2;
+            border-color: $color-2;
+          }
+
+          &:focus {
+            color: $color-2;
+            border-color: $color-2;
+          }
+        }
+      }
+    }
+  }
+}
+
+#instructor-dashboard-content {
+  a.instructor-info-action {
+    color: $yellow;
+
+    &:hover {
+      background-color: $yellow;
+      color: #ffffff;
+    }
+  }
+
+  .instructor-nav {
+    .nav-item {
+      button {
+        border-color: $color-2;
+        color: $text-1;
+
+        &:hover {
+          text-decoration: none !important;
+        }
+
+        &:focus {
+          text-decoration: none !important;
+        }
+      }
+    }
+  }
+}
